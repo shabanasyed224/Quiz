@@ -1,0 +1,38 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+public class OnlineQuizApplication {   
+    static class Question {
+        String questionText;
+        String[] options;
+        int correctOption;
+        Question(String questionText, String[] options, int correctOption) {
+            this.questionText = questionText;
+            this.options = options;
+            this.correctOption = correctOption;
+        }
+    }
+    public static void main(String[] args) {
+        ArrayList<Question> questions = new ArrayList<>();
+        questions.add(new Question("What is the capital of France?", new String[]{"1. Paris", "2. London", "3. Rome", "4. Madrid"}, 1));
+        questions.add(new Question("What is 2 + 2?", new String[]{"1. 3", "2. 4", "3. 5", "4. 6"}, 2));
+        questions.add(new Question("What is the largest planet in our Solar System?", new String[]{"1. Earth", "2. Mars", "3. Jupiter", "4. Saturn"}, 3));   
+        Scanner scanner = new Scanner(System.in);
+        int score = 0;
+        for (Question question : questions) {
+            System.out.println(question.questionText);
+            for (String option : question.options) {
+                System.out.println(option);
+            }
+            System.out.print("Your answer: ");
+            int userAnswer = scanner.nextInt();
+            if (userAnswer == question.correctOption) {
+                System.out.println("Correct!\n");
+                score++;
+            } else {
+                System.out.println("Incorrect. The correct answer was " + question.correctOption + ".\n");
+            }
+        }
+        System.out.println("You scored " + score + " out of " + questions.size() + ".");
+        scanner.close();
+    }
+}
